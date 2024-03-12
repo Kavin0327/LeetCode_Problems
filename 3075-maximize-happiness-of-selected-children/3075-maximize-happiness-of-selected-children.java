@@ -6,8 +6,8 @@ class Solution {
             maxHeap.add(happy);
         }
         int happy = 0;
-        while(k-- > 0){
-            answer += Math.max(0,maxHeap.poll() - happy);
+        while(happy < k){
+            answer += Math.max(0,(maxHeap.poll() - happy));
             happy++;
         }
         return answer;
