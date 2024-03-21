@@ -1,27 +1,17 @@
 class Solution {
-    // Memoization Approach
+    // DP(Tabulation) Approach
     public int longestCommonSubsequence(String text1, String text2) {
         int n=text1.length();
         int m=text2.length();
-        Integer arr[][] = new Integer[n][m];
-        return helper(text1,text2,0,0,n,m,arr);
-    }
-    public int helper(String S1,String S2,int index1,int index2,int n,int m,Integer arr[][]){
-        if(index1 >= n || index2 >= m){
-            return 0;
+        int dp[][] = new int[n+1][m+1];
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(text1.charAt(i-1) == text2.charAt(j-1))
+                    dp[i][j] = 1+dp[i-1][j-1];
+                else
+                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+            }
         }
-        if(arr[index1][index2] != null){
-            return arr[index1][index2];
-        }
-        if(S1.charAt(index1) == S2.charAt(index2)){
-             arr [index1][index2] = 1 + helper(S1,S2,index1+1,index2+1,n,m,arr);
-            return arr[index1][index2];
-             // return arr [index1][index2] = 1 + helper(S1,S2,index1+1,index2+1,n,m,arr); // both are same
-        }
-        else{
-            int L1 = helper(S1,S2,index1+1,index2,n,m,arr);
-            int R1 = helper(S1,S2,index1,index2+1,n,m,arr);
-            return arr[index1][index2] = Math.max(L1,R1);
-        }
+        return dp[n][m];
     }
 }
