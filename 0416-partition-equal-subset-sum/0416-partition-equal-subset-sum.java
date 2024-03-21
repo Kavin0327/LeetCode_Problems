@@ -1,5 +1,5 @@
 class Solution {
-    // Recursion Approach
+    // Memoization Approach
     public boolean canPartition(int[] nums) {
         int sum = 0;
         int n = nums.length;
