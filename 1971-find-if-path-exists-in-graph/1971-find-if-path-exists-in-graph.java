@@ -20,6 +20,8 @@ class Solution {
         List<Integer> list = map.get(src);
         if(list != null){
             for(int edge:list){
+                if(visited.contains(des))
+                    return true;
                 if(!visited.contains(edge)){
                     visited.add(edge);
                     DFS(map,edge,des,visited);
