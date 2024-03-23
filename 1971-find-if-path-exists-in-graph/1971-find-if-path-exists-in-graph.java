@@ -22,6 +22,8 @@ class Solution {
         if(list != null){
             for(int edge:list){
                 if(!visited.contains(edge)){
+                    if(visited.contains(des))
+                        return true;
                     DFS(map,edge,des,visited);
                 }
             }   
