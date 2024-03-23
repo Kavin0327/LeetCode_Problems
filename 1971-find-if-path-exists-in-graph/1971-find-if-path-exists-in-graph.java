@@ -17,13 +17,11 @@ class Solution {
     }
     
     public boolean DFS(Map<Integer,List<Integer>> map,int src,int des,Set<Integer> visited){
-        visited.add(src);
         List<Integer> list = map.get(src);
         if(list != null){
             for(int edge:list){
                 if(!visited.contains(edge)){
-                    if(visited.contains(des))
-                        return true;
+                    visited.add(edge);
                     DFS(map,edge,des,visited);
                 }
             }   
