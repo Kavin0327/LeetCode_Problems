@@ -1,4 +1,5 @@
 class Solution {
+    // BFS 
     public boolean validPath(int n, int[][] edges, int source, int destination) {
         // Creating Adjacency Matrix
         if(source == destination)
@@ -14,19 +15,23 @@ class Solution {
         }
         // System.out.println(adjacencyMatrix);
         boolean visited[] = new boolean[n];
-        return DFS(adjacencyMatrix,source,destination,visited);
-    }
-    
-    public boolean DFS(Map<Integer,List<Integer>> map,int src,int des,boolean visited[]){
-        if(visited[src]) 
-            return false;
-        visited[src] = true;
-        List<Integer> list = map.get(src);
-        if(list != null){
-            for(int edge:list){
-                DFS(map,edge,des,visited);
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(source);
+        visited[source] = true;
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            while(size-- > 0){
+                int curr = queue.poll();
+                if(curr == destination)
+                    return true;
+                for(int edge:adjacencyMatrix.get(curr)){
+                    if(!visited[edge]){
+                         visited[edge] = true;
+                        queue.add(edge);
+                  }
+                }
             }
-        }   
-        return visited[des] == true;
+        }
+        return false;
     }
 }
