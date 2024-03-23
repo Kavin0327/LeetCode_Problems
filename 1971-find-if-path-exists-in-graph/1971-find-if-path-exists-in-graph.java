@@ -13,21 +13,20 @@ class Solution {
             adjacencyMatrix.get(arr[1]).add(arr[0]);
         }
         // System.out.println(adjacencyMatrix);
-        return DFS(adjacencyMatrix,source,destination,new HashSet<>());
+        boolean visited[] = new boolean[n];
+        return DFS(adjacencyMatrix,source,destination,visited);
     }
     
-    public boolean DFS(Map<Integer,List<Integer>> map,int src,int des,Set<Integer> visited){
+    public boolean DFS(Map<Integer,List<Integer>> map,int src,int des,boolean visited[]){
+        if(visited[src]) 
+            return false;
+        visited[src] = true;
         List<Integer> list = map.get(src);
         if(list != null){
             for(int edge:list){
-                if(visited.contains(des))
-                    return true;
-                if(!visited.contains(edge)){
-                    visited.add(edge);
-                    DFS(map,edge,des,visited);
-                }
-            }   
-        }
-        return visited.contains(des);
+                DFS(map,edge,des,visited);
+            }
+        }   
+        return visited[des] == true;
     }
 }
