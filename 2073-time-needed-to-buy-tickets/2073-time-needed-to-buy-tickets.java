@@ -8,7 +8,7 @@ class Solution {
                     tickets[i]--;
                     timeTaken++;   
                 }
-                if(i == k && tickets[k] == 0)
+                if(tickets[k] == 0)
                     return timeTaken;
             }
         }
