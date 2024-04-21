@@ -28,7 +28,7 @@ class Solution {
                     if(!visited[edge]){
                          visited[edge] = true;
                         queue.add(edge);
-                  }
+                    }
                 }
             }
         }
