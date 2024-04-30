@@ -23,7 +23,7 @@ class Solution {
             else if(Character.isDigit(c)){
                 number = true;
             }
-            else if(c != ' '){
+            else {
                 special = true;
             }
         }
